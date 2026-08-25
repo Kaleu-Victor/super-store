@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Fone de Ouvido Bluetooth sem Fio",
+    "category": "Eletrônicos",
+    "price": 199.90,
+    "description": "Som estéreo de alta qualidade com cancelamento de ruído ativo.",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Smartwatch Esportivo Pro",
+    "category": "Eletrônicos",
+    "price": 299.90,
+    "description": "Monitoramento completo de batimentos cardíacos, sono e notificações.",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Câmera Compacta Digital 4K",
+    "category": "Eletrônicos",
+    "price": 899.90,
+    "description": "Lente de alta resolução para fotos e vídeos profissionais.",
+    "image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 4,
+    "name": "Tênis Casual Urban Confort",
+    "category": "Calçados",
+    "price": 159.90,
+    "description": "Estilo versátil e maciez garantida para o seu dia a dia.",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 5,
+    "name": "Mochila Executiva Impermeável",
+    "category": "Acessórios",
+    "price": 129.90,
+    "description": "Compartimento acolchoado para notebook de até 15.6 polegadas.",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 6,
+    "name": "Óculos de Sol Classic UV400",
+    "category": "Acessórios",
+    "price": 89.90,
+    "description": "Proteção total contra raios solares com armação leve e durável.",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 7,
+    "name": "Cafeteira Elétrica Programável",
+    "category": "Casa",
+    "price": 219.90,
+    "description": "Café quentinho na hora certa com jarra de vidro resistente.",
+    "image": "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 8,
+    "name": "Luminária de Mesa LED Touch",
+    "category": "Casa",
+    "price": 79.90,
+    "description": "Ajuste de intensidade de luz e temperatura de cor via toque.",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 9,
+    "name": "Garrafa Térmica de Aço Inox (500ml)",
+    "category": "Casa",
+    "price": 69.90,
+    "description": "Conserva bebidas geladas por 24h e quentes por até 12h.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80"
+  }
+]
