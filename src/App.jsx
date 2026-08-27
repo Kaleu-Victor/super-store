@@ -22,6 +22,7 @@ function App() {
       .catch((err) => console.error('Erro ao carregar produtos:', err));
   }, []);
 
+  // carrinho
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existing = prevCart.find((item) => item.id === product.id);
@@ -53,6 +54,7 @@ function App() {
 
   const totalCartPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
+  // busca e categorias
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -62,6 +64,7 @@ function App() {
 
   const categories = ['Todos', 'Eletrônicos', 'Calçados', 'Acessórios', 'Casa'];
 
+  // geração do json
   const handleCheckoutSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.address) {
@@ -86,7 +89,6 @@ function App() {
         subtotal: Number((item.price * item.quantity).toFixed(2))
       })),
       valorTotal: Number(totalCartPrice.toFixed(2)),
-      // Data e hora formatadas para o padrão do Brasil (ex: "25/08/2026, 20:16:00")
       dataPedido: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
     };
 
@@ -99,6 +101,7 @@ function App() {
     setCart([]);
   };
 
+  // estrutura visual
   return (
     <div className="app-container">
       {/* Navbar */}
@@ -295,9 +298,28 @@ function App() {
       )}
 
       {/* Rodapé */}
-      <footer className="footer">
-        <p>&copy; 2026 Super Store - Desenvolvido por Kaléu para o Bootcamp de E-commerce.</p>
-        <a href="#como-fiz" className="como-fiz-link">Acessar página /como-fiz (Vídeo do projeto)</a>
+      <footer className="footer bg-gray-950 text-white py-12 px-6 mt-16 border-t border-gray-800">
+        <div className="max-w-4xl mx-auto text-center mb-8">
+          <h3 className="text-xl font-bold mb-2">Sobre o Projeto & Apresentação</h3>
+          <p className="text-gray-400 text-sm mb-4 max-w-xl mx-auto">
+            Desenvolvido com React, Vite e CSS, aplicando o conceito de Headless Commerce com catálogo em JSON.
+          </p>
+          <div className="inline-block bg-gray-900 border border-gray-700 px-6 py-3 rounded-lg">
+            <span className="text-xs text-gray-400 block mb-1">Vídeo do Projeto:</span>
+            <a 
+              href="https://www.youtube.com/@Kaleu-VLB" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline font-semibold text-sm"
+            >
+              Assistir Apresentação
+            </a>
+          </div>
+        </div>
+        
+        <div className="text-center text-xs text-gray-500 border-t border-gray-900 pt-6">
+          <p>&copy; 2026 Super Store - Desenvolvido por Kaléu para o Bootcamp de E-commerce.</p>
+        </div>
       </footer>
     </div>
   );
