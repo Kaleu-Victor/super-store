@@ -307,7 +307,7 @@ function App() {
           <div className="inline-block bg-gray-900 border border-gray-700 px-6 py-3 rounded-lg">
             <span className="text-xs text-gray-400 block mb-1">Vídeo do Projeto:</span>
             <a 
-              href="https://www.youtube.com/@Kaleu-VLB" 
+              href="https://www.youtube.com/watch?v=XjWH2uar4mY" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-400 hover:underline font-semibold text-sm"
