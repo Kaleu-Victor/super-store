@@ -11,6 +11,7 @@ function App() {
   const [formData, setFormData] = useState({ name: '', address: '', payment: 'Cartão de Crédito' });
   const [lastOrderJson, setLastOrderJson] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentView, setCurrentView] = useState('store');
 
   useEffect(() => {
     fetch('/products.json')
@@ -72,8 +73,6 @@ function App() {
       return;
     }
 
-    // Criação do objeto JSON estruturado da compra
-    // Criação do objeto JSON estruturado da compra
     const orderPayload = {
       cliente: {
         nome: formData.name,
@@ -92,7 +91,6 @@ function App() {
       dataPedido: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
     };
 
-    // Salva o JSON no estado e imprime no console para debug/simulação de API
     setLastOrderJson(orderPayload);
     console.log("=== JSON DO PEDIDO GERADO COM SUCESSO ===");
     console.log(JSON.stringify(orderPayload, null, 2));
@@ -101,86 +99,138 @@ function App() {
     setCart([]);
   };
 
-  // estrutura visual
   return (
     <div className="app-container">
-      {/* Navbar */}
-      <header className="navbar">
-        <div className="navbar-container">
-          <div className="brand">
-            <h2>Super Store ⚡</h2>
-          </div>
-          <div className="navbar-actions">
+    {/* Navbar */}
+    <header className="navbar">
+      <div className="navbar-container">
+        <div className="brand">
+          <h2>Super Store ⚡</h2>
+        </div>
+        <div className="navbar-actions">
+          <button 
+            className={`nav-doc-btn ${currentView === 'como-fiz' ? 'active' : ''}`} 
+            onClick={() => setCurrentView(currentView === 'store' ? 'como-fiz' : 'store')}
+          >
+            {currentView === 'store' ? '🎬 /como-fiz' : '🛍️ Voltar à Loja'}
+          </button>
+
+          {currentView === 'store' && (
             <button className="cart-btn" onClick={() => setIsCartOpen(true)}>
               🛒 Carrinho <span className="badge">{cart.reduce((acc, item) => acc + item.quantity, 0)}</span>
             </button>
-          </div>
+          )}
         </div>
-      </header>
+      </div>
+    </header>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>Os Melhores Produtos em um Só Lugar</h1>
-          <p>Sua loja online com variedade, rapidez e qualidade garantida.</p>
-          
-          <div className="search-filter-wrapper">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Buscar produtos (ex: Fone, Tênis, Cafeteira...)"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className="category-tabs">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`tab-btn ${selectedCategory === cat ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+    {currentView === 'como-fiz' ? (
+      <div className="como-fiz-container">
+        <div className="como-fiz-content">
+          <h1>Página /como-fiz & Documentação do Projeto</h1>
+          <p className="subtitle">Demonstração técnica e arquitetural da Super Store ⚡</p>
+
+          <div className="video-section">
+            <h3>Vídeo de Apresentação</h3>
+            <div className="video-wrapper">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/XjWH2uar4mY" 
+                title="Apresentação Super Store" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                className="self-hosted-video"
+              ></iframe>
             </div>
+            <span className="video-tip">Nota: Apresentação técnica detalhada do projeto e auditoria Lighthouse.</span>
           </div>
-        </div>
-      </section>
 
-      {/* Vitrine */}
-      <main className="main-content">
-        <div className="catalog-header">
-          <h2>Catálogo de Produtos</h2>
-          <span>Exibindo {filteredProducts.length} itens</span>
-        </div>
+          {/* Resumo Geral do que foi feito */}
+          <div className="summary-section">
+            <h3>Resumo Geral do Desenvolvimento</h3>
+            <ul>
+              <li><strong>Arquitetura Headless Commerce:</strong> O catálogo de produtos foi completamente desacoplado da interface através de um arquivo estático `products.json`, consumido via requisições assíncronas (`fetch` e `useEffect`).</li>
+              <li><strong>Stack Tecnológica:</strong> Construído em React utilizando Vite para empacotamento rápido, complementado por estilização em CSS puro focada em design responsivo e efeitos modernos (Glassmorphism).</li>
+              <li><strong>Gestão de Estado Complexa:</strong> Implementação de carrinho de compras interativo com controle dinâmico de quantidades, exclusão de itens, persistência de estados e cálculo automático de subtotais e totais.</li>
+              <li><strong>Checkout Dinâmico e Geração de Payload JSON:</strong> O fluxo final valida os dados do cliente, monta um objeto JSON estruturado com os dados do pedido, itens, forma de pagamento e data/hora atualizada, simulando uma API real no console.</li>
+              <li><strong>Performance e Otimização:</strong> Análise de desempenho executada via Lighthouse, validando métricas de carregamento, boas práticas e pontos de melhoria em acessibilidade.</li>
+            </ul>
+          </div>
 
-        {loading ? (
-          <p className="loading-msg">Carregando catálogo...</p>
-        ) : (
-          <div className="product-grid">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div key={product.id} className="product-card">
-                  <div className="card-img-container">
-                    <img src={product.image} alt={product.name} />
-                  </div>
-                  <div className="card-body">
-                    <span className="card-category">{product.category}</span>
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <div className="card-footer">
-                      <span className="price">R$ {product.price.toFixed(2)}</span>
-                      <button className="buy-btn" onClick={() => addToCart(product)}>Comprar</button>
-                    </div>
-                  </div>
+          <button className="primary-action-btn back-store-btn" onClick={() => setCurrentView('store')}>
+            Voltar para a Loja Virtual
+          </button>
+        </div>
+      </div>
+    ) : (
+        <>
+          {/* Hero Section */}
+          <section className="hero">
+            <div className="hero-content">
+              <h1>Os Melhores Produtos em um Só Lugar</h1>
+              <p>Sua loja online com variedade, rapidez e qualidade garantida.</p>
+              
+              <div className="search-filter-wrapper">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Buscar produtos (ex: Fone, Tênis, Cafeteira...)"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div className="category-tabs">
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      className={`tab-btn ${selectedCategory === cat ? 'active' : ''}`}
+                      onClick={() => setSelectedCategory(cat)}
+                    >
+                      {cat}
+                    </button>
+                  ))}
                 </div>
-              ))
+              </div>
+            </div>
+          </section>
+
+          {/* Vitrine */}
+          <main className="main-content">
+            <div className="catalog-header">
+              <h2>Catálogo de Produtos</h2>
+              <span>Exibindo {filteredProducts.length} itens</span>
+            </div>
+
+            {loading ? (
+              <p className="loading-msg">Carregando catálogo...</p>
             ) : (
-              <p className="no-results">Nenhum produto encontrado com esses termos.</p>
+              <div className="product-grid">
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map((product) => (
+                    <div key={product.id} className="product-card">
+                      <div className="card-img-container">
+                        <img src={product.image} alt={product.name} />
+                      </div>
+                      <div className="card-body">
+                        <span className="card-category">{product.category}</span>
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                        <div className="card-footer">
+                          <span className="price">R$ {product.price.toFixed(2)}</span>
+                          <button className="buy-btn" onClick={() => addToCart(product)}>Comprar</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="no-results">Nenhum produto encontrado com esses termos.</p>
+                )}
+              </div>
             )}
-          </div>
-        )}
-      </main>
+          </main>
+        </>
+      )}
 
       {/* Carrinho Lateral / Drawer */}
       {isCartOpen && (
@@ -280,7 +330,6 @@ function App() {
                 <p>Obrigado, <strong>{formData.name}</strong>!</p>
                 <p>Seu pedido foi registrado via <strong>{formData.payment}</strong>.</p>
                 
-                {/* Exibição visual do JSON do pedido gerado */}
                 {lastOrderJson && (
                   <div className="json-preview-box">
                     <span className="json-title">Payload JSON Gerado:</span>
@@ -305,15 +354,6 @@ function App() {
             Desenvolvido com React, Vite e CSS, aplicando o conceito de Headless Commerce com catálogo em JSON.
           </p>
           <div className="inline-block bg-gray-900 border border-gray-700 px-6 py-3 rounded-lg">
-            <span className="text-xs text-gray-400 block mb-1">Vídeo do Projeto:</span>
-            <a 
-              href="https://www.youtube.com/watch?v=XjWH2uar4mY" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline font-semibold text-sm"
-            >
-              Assistir Apresentação
-            </a>
           </div>
         </div>
         
