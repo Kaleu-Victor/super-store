@@ -1,3 +1,9 @@
+## 🌐 Acesse o projeto
+
+🔗 **Super Store — Acessar aplicação https://super-store-sandy.vercel.app/**
+
+A aplicação está hospedada na **Vercel** e pode ser acessada diretamente pelo link acima.
+
 # 🛍️ Super Store ⚡
 
 Uma aplicação de e-commerce desenvolvida como desafio do **Bootcamp AWS AI FDE for Commerce**.
