@@ -7,7 +7,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState('cart'); // 'cart', 'form', 'success'
+  const [checkoutStep, setCheckoutStep] = useState('cart');
   const [formData, setFormData] = useState({ name: '', address: '', payment: 'Cartão de Crédito' });
   const [lastOrderJson, setLastOrderJson] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -133,15 +133,12 @@ function App() {
           <div className="video-section">
             <h3>Vídeo de Apresentação</h3>
             <div className="video-wrapper">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/XjWH2uar4mY" 
-                title="Apresentação Super Store" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
+              <iframe
                 className="self-hosted-video"
+                src="https://www.youtube.com/embed/RSrTfDwu_zE"
+                title="Como fiz minha loja"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               ></iframe>
             </div>
             <span className="video-tip">Nota: Apresentação técnica detalhada do projeto e auditoria Lighthouse.</span>
